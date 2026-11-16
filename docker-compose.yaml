@@ -1,0 +1,23 @@
+services:
+  oracle:
+    image: gvenzl/oracle-xe:21-slim
+    container_name: oracle-test
+    ports:
+      - "1521:1521"
+    environment:
+      ORACLE_PASSWORD: oracle          # password for SYS / SYSTEM
+      APP_USER: magma                  # application user that will own the table
+      APP_USER_PASSWORD: magma
+    volumes:
+      - oracle-data:/opt/oracle/oradata
+      # Optional: place a .sql script here to run on first start
+      # - ./init:/container-entrypoint-initdb.d
+    healthcheck:
+      test: ["CMD", "healthcheck.sh"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
+
+volumes:
+  oracle-data:
