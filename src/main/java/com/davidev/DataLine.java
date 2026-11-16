@@ -9,6 +9,8 @@ public class DataLine implements Serializable{
     private String silLineContent;
     private Integer silProcess;
 
+    public DataLine() {
+    }
 
     public DataLine(Integer silLineNumber, String silLineContent, Integer silProcess) {
         this.silLineNumber = silLineNumber;
