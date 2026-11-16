@@ -5,9 +5,11 @@ import java.util.Objects;
 
 public class InsertResult implements Serializable {
     private static final long serialVersionUID = 1L;
-    private final int rowsInserted;
-    private final long elapsedMillis;
+    private int rowsInserted;
+    private long elapsedMillis;
 
+    public InsertResult() {
+    }
 
     public InsertResult(int rowsInserted, long elapsedMillis) {
         this.rowsInserted = rowsInserted;
@@ -20,6 +22,14 @@ public class InsertResult implements Serializable {
 
     public long getElapsedMillis() {
         return elapsedMillis;
+    }
+
+    public void setRowsInserted(int rowsInserted) {
+        this.rowsInserted = rowsInserted;
+    }
+
+    public void setElapsedMillis(long elapsedMillis) {
+        this.elapsedMillis = elapsedMillis;
     }
 
     @Override

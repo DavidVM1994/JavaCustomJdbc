@@ -36,8 +36,9 @@ public class DynamicTableInsert {
             String schema,
             String table,
             String fileName,
-            List<DataLine> dataLines
+            DataLineList dataLinesList
     ) throws SQLException {
+        List<DataLine> dataLines = dataLinesList.getDataLines();
         if (dataLines == null || dataLines.isEmpty()){
             return new InsertResult(0,0);
         }

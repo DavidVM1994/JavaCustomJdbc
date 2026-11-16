@@ -1,15 +1,16 @@
 package com.davidev;
 
+import java.sql.SQLException;
 import java.util.Collections;
 import java.util.List;
 
 public class Main {
-    public static void main(String[] args){
-        String url = "";
-        String username = "";
-        String password = "";
-        String schema = "";
-        String table = "";
+    public static void main(String[] args) throws SQLException {
+        String url = "jdbc:oracle:thin:@localhost:1521/xepdb1";
+        String username = "magma";
+        String password = "magma";
+        String schema = "MAGMA";
+        String table = "MAGMA_RECORDS";
         String fileName = "CZERO001C01ST0110A4261016163716";
         List<DataLine> dataLines = List.of(
                 new DataLine(0,  "ACZERO001101ST0110A4RH0736   IMPERA(TM) P1504 HYDROCARBON RKG   2.167 01                                 0.000  59700748", 0),
@@ -39,5 +40,8 @@ public class Main {
                 new DataLine(24, "BCZERO0012BY04     180 N", 0),
                 new DataLine(25, "BCZERO001CBY09    3600 N", 0)
         );
+        DataLineList dataLineList = new DataLineList();
+        dataLineList.setDataLines(dataLines);
+        InsertResult ret= DynamicTableInsert.insertMagmaRecords(url, username, password, schema, table, fileName, dataLineList);
     }
 }
