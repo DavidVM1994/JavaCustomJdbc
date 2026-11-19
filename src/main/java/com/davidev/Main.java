@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class Main {
-    public static void main(String[] args) throws SQLException {
+    public static void main(String[] args) throws SQLException, ClassNotFoundException {
         String url = "jdbc:oracle:thin:@localhost:1521/xepdb1";
         String username = "magma";
         String password = "magma";

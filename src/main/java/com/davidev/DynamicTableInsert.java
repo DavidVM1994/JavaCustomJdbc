@@ -37,7 +37,7 @@ public class DynamicTableInsert {
             String table,
             String fileName,
             DataLineList dataLinesList
-    ) throws SQLException {
+    ) throws SQLException, ClassNotFoundException {
         List<DataLine> dataLines = dataLinesList.getDataLines();
         if (dataLines == null || dataLines.isEmpty()){
             return new InsertResult(0,0);
@@ -46,6 +46,7 @@ public class DynamicTableInsert {
         long startMillis = System.currentTimeMillis();
         String[] columns = {"SIL_FILENAME", "SIL_LINE_NUMBER", "SIL_LINE_CONTENT", "SIL_PROCESSED"};
         String sqlString = sqlBuilder(schema, table, columns);
+        Class.forName("oracle.jdbc.OracleDriver");
         try(Connection connection = DriverManager.getConnection(url, username, password)) {
             connection.setAutoCommit(false);
             log.info("connection to database successfully established");
